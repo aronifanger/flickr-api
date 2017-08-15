@@ -1,0 +1,44 @@
+## Baixar Vídeo do youtube através da URL
+
+youtube-dl -o 'video1' -f 11 https://www.youtube.com/watch?v=A2HIhOszByk&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=1
+youtube-dl -o 'video2' -f 11 https://www.youtube.com/watch?v=4_dWiBNz0HM&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=2
+youtube-dl -o 'video3' -f 11 https://www.youtube.com/watch?v=Q5ujLv2FtFs&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=3
+youtube-dl -o 'video4' -f 11 https://www.youtube.com/watch?v=YOls6BcSy9k&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=4
+youtube-dl -o 'video5' -f 11 https://www.youtube.com/watch?v=QjIlbi8lKrQ&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=5
+youtube-dl -o 'video6' -f 11 https://www.youtube.com/watch?v=ZdLzBM6Wji8&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=6
+youtube-dl -o 'video7' -f 11 https://www.youtube.com/watch?v=dWq0NblaOFk&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=7
+youtube-dl -o 'video8' -f 11 https://www.youtube.com/watch?v=WS3tJFsbIL4&list=PLG_Sa85k4WqvXQCkG-PRqEp8sz_DBBEcN&index=8
+
+## Cortar os vídeos em momentos onde há fogo e não a fogo salvando na pasta adeguada
+
+ffmpeg -i video2.mp4 -ss 00:00:00 -t 00:00:02 -async 1 -strict -2 fire/video2_cut1.mp4
+ffmpeg -i video2.mp4 -ss 00:00:04 -t 00:00:13 -async 1 -strict -2 fire/video2_cut3.mp4
+ffmpeg -i video3.mkv -ss 00:00:10 -t 00:00:37 -async 1 -strict -2 fire/video3_cut1.mkv
+ffmpeg -i video3.mkv -ss 00:01:08 -t 00:00:11 -async 1 -strict -2 fire/video3_cut2.mkv
+ffmpeg -i video3.mkv -ss 00:01:26 -t 00:00:11 -async 1 -strict -2 fire/video3_cut3.mkv
+ffmpeg -i video3.mkv -ss 00:01:40 -t 00:00:07 -async 1 -strict -2 fire/video3_cut4.mkv
+ffmpeg -i video3.mkv -ss 00:02:06 -t 00:00:22 -async 1 -strict -2 fire/video3_cut5.mkv
+ffmpeg -i video5.mkv -ss 00:01:37 -t 00:05:43 -async 1 -strict -2 fire/video5_cut2.mkv
+ffmpeg -i video6.mp4 -ss 00:00:00 -t 00:06:20 -async 1 -strict -2 fire/video6_cut1.mp4
+ffmpeg -i video8.mp4 -ss 00:01:13 -t 00:04:07 -async 1 -strict -2 fire/video8_cut2.mp4
+ffmpeg -i video8.mp4 -ss 00:00:12 -t 00:01:00 -async 1 -strict -2 not_fire/video8_cut1.mp4
+ffmpeg -i video2.mp4 -ss 00:00:02 -t 00:00:01 -async 1 -strict -2 not_fire/video2_cut2.mp4 
+ffmpeg -i video5.mkv -ss 00:01:31 -t 00:00:04 -async 1 -strict -2 not_fire/video5_cut1.mkv
+
+## Extrair frames dos vídeos
+
+ffmpeg -i fire/video2_cut1.mp4 -r 1 fire/images/video2_cut1%4d.png
+ffmpeg -i fire/video2_cut1.mp4 -r 1 fire/images/video2_cut1%4d.png
+ffmpeg -i fire/video2_cut3.mp4 -r 1 fire/images/video2_cut3%4d.png
+ffmpeg -i fire/video3_cut1.mkv -r 1 fire/images/video3_cut1%4d.png
+ffmpeg -i fire/video3_cut2.mkv -r 1 fire/images/video3_cut2%4d.png
+ffmpeg -i fire/video3_cut3.mkv -r 1 fire/images/video3_cut3%4d.png
+ffmpeg -i fire/video3_cut4.mkv -r 1 fire/images/video3_cut4%4d.png
+ffmpeg -i fire/video3_cut5.mkv -r 1 fire/images/video3_cut5%4d.png
+ffmpeg -i fire/video5_cut2.mkv -r 1 fire/images/video5_cut2%4d.png
+ffmpeg -i fire/video6_cut1.mp4 -r 1 fire/images/video6_cut1%4d.png
+ffmpeg -i fire/video8_cut2.mp4 -r 1 fire/images/video8_cut2%4d.png
+ffmpeg -i not_fire/video8_cut1.mp4 -r 10 not_fire/images/video8_cut1%4d.png
+ffmpeg -i not_fire/video2_cut2.mp4 -r 10 not_fire/images/video2_cut2%4d.png 
+ffmpeg -i not_fire/video5_cut1.mkv -r 10 not_fire/images/video5_cut1%4d.png
+
